@@ -1,5 +1,5 @@
 {
-  "debug": true,
+  "debug": false,
   "packagePath": "./",
   "buildCommand": "npm run build",
   "mock": {
