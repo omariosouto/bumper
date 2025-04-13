@@ -65,15 +65,13 @@
         updateVersion();   // ✅
         syncPackageJSON(); // ✅
         updateChangelog(); // ✅
+        publishVersion();  // ✅
+        resetPkgExports(); // ✅
         createGitCommit(); // ✅
         pushToPR();        // ✅
         createGitTag();    // ✅
         pushGitTag();      // ✅
-        publishVersion();  // ✅
-        // TODO: Adjust this order to make a single commit instead of multiples
-        resetPkgExports(); // ✅
-        createGitCommit(); // ✅
-        pushToPR();        // ✅
+
         await mergePR()
           .then(async () => {
             await gh.updateCommentOnPR(commentID, (`
