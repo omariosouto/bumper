@@ -18,6 +18,7 @@
   const PATH_TO_PACKAGE = path.join(ROOT_DIRNAME, CONFIG_FILE.packagePath);
   const PACKAGE_JSON_FILE = fs.readFileSync(path.join(PATH_TO_PACKAGE, "package.json"), "utf-8");
   const PACKAGE_JSON = JSON.parse(PACKAGE_JSON_FILE);
+  const PACKAGE_JSON_ORIGINAL_EXPORTS = PACKAGE_JSON?.exports;
   // CI - GitHub Metadata
   const PR_NUMBER = process.env.PR_NUMBER || CONFIG_FILE.mock.PR_NUMBER || (() => { throw new Error("PR_NUMBER not found") })();
   const PR_COMMENT = process.env.PR_COMMENT || CONFIG_FILE.mock.PR_COMMENT || (() => { throw new Error("PR_COMMENT not found") })();
@@ -69,6 +70,10 @@
         createGitTag();    // ✅
         pushGitTag();      // ✅
         publishVersion();  // ✅
+        // TODO: Adjust this order to make a single commit instead of multiples
+        resetPkgExports(); // ✅
+        createGitCommit(); // ✅
+        pushToPR();        // ✅
         await mergePR()
           .then(async () => {
             await gh.updateCommentOnPR(commentID, (`
@@ -142,6 +147,15 @@ ${PACKAGE_JSON.version}
 
       DEBUG && log(command);
       !DEBUG && execSync(command, { stdio: "inherit" });
+    }
+
+    function resetPkgExports() {
+      log("🤖 - [resetPkgExports] Resetting package.json exports");
+      if (PACKAGE_JSON_ORIGINAL_EXPORTS) {
+        PACKAGE_JSON.exports = PACKAGE_JSON_ORIGINAL_EXPORTS;
+        !DEBUG &&
+          fs.writeFileSync(path.join(PATH_TO_PACKAGE, "package.json"), JSON.stringify(PACKAGE_JSON, null, 2));
+      }
     }
 
     async function mergePR() {
