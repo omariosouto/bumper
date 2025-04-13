@@ -146,12 +146,11 @@ ${PACKAGE_JSON.version}
 
     async function mergePR() {
       log("🤖 - Merging the PR");
-      // TODO: uncomment this when ready
-      // const data = await gh.mergePR();
-      // console.log("mergePR", data);
-      // if (data?.status?.startsWith("4") || data?.status?.startsWith("5")) {
-      //   throw new Error(data.message);
-      // }
+      const data = await gh.mergePR();
+      console.log("mergePR", data);
+      if (data?.status?.startsWith("4") || data?.status?.startsWith("5")) {
+        throw new Error(data.message);
+      }
     }
 
     function resetBetaCommit() {
