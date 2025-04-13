@@ -4,6 +4,7 @@
   "description": "Qualistack bumper",
   "main": "index.js",
   "scripts": {
+    "bumper": "node ./index.js",
     "build": "echo 'I need to build the library...'",
     "test": "echo 'There are no tests. But things work trust me!'"
   },
