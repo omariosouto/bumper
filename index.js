@@ -302,6 +302,8 @@ ${PACKAGE_JSON.version}
     })
       .then(res => res.json());
 
+    console.log("[prInfo]", prInfo);
+
     return {
       async isPRMergeable() {
         const BASE_URL = `https://api.github.com/repos/${owner}/${repo}/pulls/${PR_NUMBER}`;
