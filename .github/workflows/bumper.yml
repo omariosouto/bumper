@@ -21,6 +21,7 @@ jobs:
         with:
           app_id: ${{ secrets.GH_APP_ID }}
           private_key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+          permission-packages: write
           # Optionally specify which repository permissions you need.
           # See https://github.com/actions/create-github-app-token#inputs
           # e.g., permissions: 'contents:write, pull-requests:write, issues:write'
