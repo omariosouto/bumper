@@ -1,3 +1,14 @@
+# 1.3.1-beta20254131744574611PR7 - 2025-4-13
+
+This pull request includes several changes to the `index.js` file to improve the handling of the `package.json` exports and streamline the commit process during the CI workflow. The most important changes include adding a function to reset the `package.json` exports, adjusting the order of operations to make a single commit, and ensuring the `package.json` exports are synced post-build.
+### Improvements to handling `package.json` exports:
+* Added `PACKAGE_JSON_ORIGINAL_EXPORTS` to store the original exports from `package.json`.
+* Implemented the `resetPkgExports` function to reset the `package.json` exports to their original state.
+* Modified the `syncPackageJSON` function to update the `package.json` exports with the post-build exports.
+### Streamlining commit process:
+* Adjusted the order of operations to include `resetPkgExports`, `createGitCommit`, and `pushToPR` to ensure a single commit is made instead of multiple commits.
+
+
 # 1.3.0 - 2025-4-13
 
 ...
