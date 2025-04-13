@@ -68,7 +68,7 @@ jobs:
           echo "========"
 
           # Optionally set up a custom .npmrc if needed for private npm usage
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_REGISTRY_TOKEN }}" > ~/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ env.GH_REGISTRY_TOKEN }}" > ~/.npmrc
           npm config set @omariosouto:registry https://npm.pkg.github.com
 
           echo "Checking .npmrc"
