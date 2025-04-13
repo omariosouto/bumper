@@ -71,6 +71,8 @@ jobs:
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_REGISTRY_TOKEN }}" > ~/.npmrc
           npm config set @omariosouto:registry https://npm.pkg.github.com
 
+          cat ~/.npmrc
+
           # Run the bumper script
           npm run bumper
         env:
