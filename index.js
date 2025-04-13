@@ -259,6 +259,13 @@ ${PACKAGE_JSON.version}
 
     function syncPackageJSON() {
       log("🤖 - [syncPackageJSON] Syncing package.json...");
+      const PACKAGE_JSON_POST_BUILD = fs.readFileSync(path.join(PATH_TO_PACKAGE, "package.json"), "utf-8");
+      const PACKAGE_JSON_POST_BUILD_PARSED = JSON.parse(PACKAGE_JSON_POST_BUILD);
+
+      const pkgExports = PACKAGE_JSON_POST_BUILD_PARSED?.exports;
+
+      if(pkgExports) PACKAGE_JSON.exports = pkgExports;
+
       !DEBUG &&
         fs.writeFileSync(path.join(PATH_TO_PACKAGE, "package.json"), JSON.stringify(PACKAGE_JSON, null, 2));
     }
