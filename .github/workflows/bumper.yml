@@ -69,6 +69,7 @@ jobs:
 
           # Optionally set up a custom .npmrc if needed for private npm usage
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_REGISTRY_TOKEN }}" > ~/.npmrc
+          npm config set @omariosouto:registry https://npm.pkg.github.com
 
           # Run the bumper script
           npm run bumper
