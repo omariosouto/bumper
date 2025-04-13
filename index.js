@@ -74,7 +74,7 @@
             await gh.updateCommentOnPR(commentID, (`
 Release created successfully!
             
-- **Package**: [\`${PACKAGE_JSON.name}\`](https://github.com/omariosouto/${await gh.getRepoName()}/releases/tag/v${PACKAGE_JSON.version})
+- **Package**: [\`${PACKAGE_JSON.name}\`](https://github.com/${await gh.getRepoOwner()}/${await gh.getRepoName()}/releases/tag/v${PACKAGE_JSON.version})
 - **Version**:
 \`\`\`sh
 ${PACKAGE_JSON.version}
@@ -103,7 +103,7 @@ ${PACKAGE_JSON.version}
         await gh.updateCommentOnPR(commentID, (`
 Beta release created successfully!
       
-- **Package**: [\`${PACKAGE_JSON.name}\`](https://github.com/omariosouto/${await gh.getRepoName()}/releases/tag/v${PACKAGE_JSON.version})
+- **Package**: [\`${PACKAGE_JSON.name}\`](https://github.com/${await gh.getRepoOwner()}/${await gh.getRepoName()}/releases/tag/v${PACKAGE_JSON.version})
 - **Version**:
 \`\`\`sh
 ${PACKAGE_JSON.version}
@@ -307,6 +307,9 @@ ${PACKAGE_JSON.version}
     console.log("[prInfo]", prInfo);
 
     return {
+      async getRepoOwner() {
+        return owner;
+      },
       async getRepoName() {
         return repo;
       },
