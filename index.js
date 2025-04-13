@@ -308,7 +308,7 @@ ${PACKAGE_JSON.version}
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+            Authorization: `Bearer ${process.env.GH_TOKEN}`,
           },
         });
 
@@ -321,7 +321,7 @@ ${PACKAGE_JSON.version}
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+            Authorization: `Bearer ${process.env.GH_TOKEN}`,
           },
           body: JSON.stringify({ commit_title: `Merge PR #${PR_NUMBER}` }),
         });
@@ -335,7 +335,7 @@ ${PACKAGE_JSON.version}
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+            Authorization: `Bearer ${process.env.GH_TOKEN}`,
           },
           body: JSON.stringify({ body: comment }),
         });
@@ -349,7 +349,7 @@ ${PACKAGE_JSON.version}
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+            Authorization: `Bearer ${process.env.GH_TOKEN}`,
           },
           body: JSON.stringify({ body: newComment }),
         });
