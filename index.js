@@ -65,15 +65,13 @@
         updateVersion();   // ✅
         syncPackageJSON(); // ✅
         updateChangelog(); // ✅
+        publishVersion();  // ✅
+        resetPkgExports(); // ✅
         createGitCommit(); // ✅
         pushToPR();        // ✅
         createGitTag();    // ✅
         pushGitTag();      // ✅
-        publishVersion();  // ✅
-        // TODO: Adjust this order to make a single commit instead of multiples
-        resetPkgExports(); // ✅
-        createGitCommit(); // ✅
-        pushToPR();        // ✅
+
         await mergePR()
           .then(async () => {
             await gh.updateCommentOnPR(commentID, (`
@@ -160,12 +158,39 @@ ${PACKAGE_JSON.version}
 
     async function mergePR() {
       log("🤖 - Merging the PR");
-      const data = await gh.mergePR();
-      console.log("mergePR", data);
-      if (data?.status?.startsWith("4") || data?.status?.startsWith("5")) {
-        throw new Error(data.message);
+    
+      const maxAttempts = 5;
+      const baseDelayMs = 30 * 1000; // 30 seconds in ms
+    
+      for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+        try {
+          const data = await gh.mergePR();
+          console.log("mergePR", data);
+    
+          if (data?.status?.startsWith("4") || data?.status?.startsWith("5")) {
+            throw new Error(data.message);
+          }
+    
+          // If successful, just return the data
+          return data;
+        } catch (error) {
+          if (attempt === maxAttempts) {
+            // Rethrow if we've tried 5 times already
+            throw new Error(
+              `Failed to merge PR after ${maxAttempts} attempts: ${error.message}`
+            );
+          }
+    
+          // Calculate the current delay
+          const delayMs = baseDelayMs * attempt;
+          log(`🤖 - Attempt ${attempt} failed. Retrying in ${delayMs / 1000}s...`);
+    
+          // Wait for the specified delay before reattempting
+          await new Promise(resolve => setTimeout(resolve, delayMs));
+        }
       }
     }
+    
 
     function resetBetaCommit() {
       log("🤖 - Resetting the beta commit");
