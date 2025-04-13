@@ -1,6 +1,6 @@
 {
   "name": "@omariosouto/bumper",
-  "version": "1.0.0",
+  "version": "1.0.1-beta20254131744505613PR2",
   "description": "Qualistack bumper",
   "main": "index.js",
   "scripts": {
