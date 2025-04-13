@@ -1,3 +1,16 @@
+# 1.6.0 - 2025-4-13
+
+This pull request includes changes to optimize the sequence of version control operations in the `index.js` file. The most important changes involve rearranging the order of git commands to ensure a single commit is made instead of multiple commits and adding retry logic for merging pull requests.
+Changes to version control operations:
+* [`index.js`](diffhunk://#diff-e727e4bdf3657fd1d798edcd6b099d6e092f8573cba266154583a746bba0f346L68-R74): Removed redundant git commands and adjusted the order to ensure `createGitCommit` and `pushToPR` are called only once. This helps in making a single commit instead of multiple commits.
+Enhancements to merge process:
+* [`index.js`](diffhunk://#diff-e727e4bdf3657fd1d798edcd6b099d6e092f8573cba266154583a746bba0f346R161-R193): Added retry logic for merging pull requests with a maximum of 5 attempts and exponential backoff. This ensures more robust handling of transient errors during the merge process.
+Version updates:
+* [`package.json`](diffhunk://#diff-7ae45ad102eab3b6d7e7896acd08c427a9b25b346470d7bc6507b6481575d519L3-R3): Updated the version from `1.3.2` to `1.5.0`.
+Documentation updates:
+* [`CHANGELOG.md`](diffhunk://#diff-06572a96a58dc510037d5efa622f9bec8519bc1beab13c9f251e97e657a9d4edR1-R14): Added entries for versions `1.4.0` and `1.5.0` to document the changes made in this pull request.
+
+
 # 1.5.0 - 2025-4-13
 
 This pull request includes changes to the `index.js` file to optimize the sequence of version control operations. The most important changes involve rearranging the order of git commands to ensure a single commit is made instead of multiple commits.
