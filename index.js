@@ -74,7 +74,7 @@
             await gh.updateCommentOnPR(commentID, (`
 Release created successfully!
             
-- **Package**: [\`${PACKAGE_JSON.name}\`](https://github.com/omariosouto/tsconfig/releases/tag/v${PACKAGE_JSON.version})
+- **Package**: [\`${PACKAGE_JSON.name}\`](https://github.com/omariosouto/${await getRepoName()}/releases/tag/v${PACKAGE_JSON.version})
 - **Version**:
 \`\`\`sh
 ${PACKAGE_JSON.version}
@@ -103,7 +103,7 @@ ${PACKAGE_JSON.version}
         await gh.updateCommentOnPR(commentID, (`
 Beta release created successfully!
       
-- **Package**: [\`${PACKAGE_JSON.name}\`](https://github.com/omariosouto/tsconfig/releases/tag/v${PACKAGE_JSON.version})
+- **Package**: [\`${PACKAGE_JSON.name}\`](https://github.com/omariosouto/${await getRepoName()}/releases/tag/v${PACKAGE_JSON.version})
 - **Version**:
 \`\`\`sh
 ${PACKAGE_JSON.version}
@@ -307,6 +307,9 @@ ${PACKAGE_JSON.version}
     console.log("[prInfo]", prInfo);
 
     return {
+      async getRepoName() {
+        return repo;
+      },
       async isPRMergeable() {
         const BASE_URL = `https://api.github.com/repos/${owner}/${repo}/pulls/${PR_NUMBER}`;
         const response = await fetch(BASE_URL, {
