@@ -237,10 +237,10 @@ ${PACKAGE_JSON.version}
 
       switch (BUMP_KIND) {
         case "major":
-          newVersion = `${parseInt(major) + 1}.${minor}.${patch}`;
+          newVersion = `${parseInt(major) + 1}.0.0`;
           break;
         case "minor":
-          newVersion = `${major}.${parseInt(minor) + 1}.${patch}`;
+          newVersion = `${major}.${parseInt(minor) + 1}.0`;
           break;
         case "patch":
           newVersion = `${major}.${minor}.${parseInt(patch) + 1}`;
