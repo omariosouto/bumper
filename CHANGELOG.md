@@ -1,3 +1,10 @@
+# 1.5.0 - 2025-4-13
+
+This pull request includes changes to the `index.js` file to optimize the sequence of version control operations. The most important changes involve rearranging the order of git commands to ensure a single commit is made instead of multiple commits.
+Changes to version control operations:
+* [`index.js`](diffhunk://#diff-e727e4bdf3657fd1d798edcd6b099d6e092f8573cba266154583a746bba0f346L68-R74): Removed redundant git commands and adjusted the order to ensure `createGitCommit` and `pushToPR` are called only once. This helps in making a single commit instead of multiple commits.
+
+
 # 1.4.0 - 2025-4-13
 
 This pull request includes changes to the `index.js` file to optimize the sequence of version control operations. The most important changes involve rearranging the order of git commands to ensure a single commit is made instead of multiple commits.
