@@ -295,7 +295,9 @@ ${PACKAGE_JSON.version}
   }
 
   async function GitHub() {
+    console.log("PACKAGE_JSON.repository", PACKAGE_JSON.repository);
     const [owner, repo] = new URL(PACKAGE_JSON.repository).pathname.split("/").filter(Boolean);
+    console.log("owner.repo", { owner, repo });
     const BASE_URL = `https://api.github.com/repos/${owner}/${repo}/issues/${PR_NUMBER}`;
     const prInfo = await fetch(BASE_URL, {
       method: "GET",
