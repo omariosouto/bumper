@@ -1,11 +1,12 @@
 {
   "name": "@omariosouto/bumper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Qualistack bumper",
   "main": "index.js",
   "scripts": {
+    "bumper": "node ./index.js",
     "build": "echo 'I need to build the library...'",
-    "test": "echo 'There are no tests... but things work trust me!'"
+    "test": "echo 'There are no tests. But things work trust me!'"
   },
   "repository": "https://github.com/omariosouto/bumper",
   "publishConfig": {
