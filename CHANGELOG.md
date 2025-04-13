@@ -1,3 +1,8 @@
+# 1.3.0-beta20254131744573003PR6 - 2025-4-13
+
+...
+
+
 # 1.2.8 - 2025-4-13
 
 This pull request includes changes to the `index.js` file to dynamically fetch the repository name for release comments. This ensures that the release links are always accurate, regardless of the repository they are in.
