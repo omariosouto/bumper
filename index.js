@@ -11,10 +11,11 @@
   const MONTH = DATE.getMonth() + 1;
   const DAY = DATE.getDate();
   const MILLISECONDS = Math.floor(Date.now() / 1000);
-  const ROOT_PATH = path.join(__dirname);
+  const ROOT_DIRNAME = path.join(process.cwd());
+  const ROOT_PATH = path.join(ROOT_DIRNAME);
   const CONFIG_FILE_RAW = path.join(ROOT_PATH, ".bumper.json");
   const CONFIG_FILE = JSON.parse(fs.readFileSync(CONFIG_FILE_RAW, "utf-8"));
-  const PATH_TO_PACKAGE = path.join(__dirname, CONFIG_FILE.packagePath);
+  const PATH_TO_PACKAGE = path.join(ROOT_DIRNAME, CONFIG_FILE.packagePath);
   const PACKAGE_JSON_FILE = fs.readFileSync(path.join(PATH_TO_PACKAGE, "package.json"), "utf-8");
   const PACKAGE_JSON = JSON.parse(PACKAGE_JSON_FILE);
   // CI - GitHub Metadata
