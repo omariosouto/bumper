@@ -229,7 +229,15 @@ ${PACKAGE_JSON.version}
     function createGitCommit() {
       log("🤖 - Create git commit");
 
-      const gitCommand = `git add . && git commit -m "Commiting ${PACKAGE_JSON.version} - ${YEAR}-${MONTH}-${DAY}"`;
+      const gitStatusCommand = `git status --porcelain`;
+      const hasChanges = execSync(gitStatusCommand).toString().trim().length > 0;
+
+      if (!hasChanges) {
+        log("🤖 - No changes to commit");
+        return;
+      }
+
+      const gitCommand = `git add . && git commit -m "Committing ${PACKAGE_JSON.version} - ${YEAR}-${MONTH}-${DAY}"`;
 
       DEBUG &&
         log(gitCommand);
@@ -278,7 +286,7 @@ ${PACKAGE_JSON.version}
 
       const pkgExports = PACKAGE_JSON_POST_BUILD_PARSED?.exports;
 
-      if(pkgExports) PACKAGE_JSON.exports = pkgExports;
+      if (pkgExports) PACKAGE_JSON.exports = pkgExports;
 
       !DEBUG &&
         fs.writeFileSync(path.join(PATH_TO_PACKAGE, "package.json"), JSON.stringify(PACKAGE_JSON, null, 2));
