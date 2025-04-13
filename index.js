@@ -74,7 +74,7 @@
             await gh.updateCommentOnPR(commentID, (`
 Release created successfully!
             
-- **Package**: [\`${PACKAGE_JSON.name}\`](https://github.com/omariosouto/${await gh.getRepoName()}/releases/tag/v${PACKAGE_JSON.version})
+- **Package**: [\`${PACKAGE_JSON.name}\`](https://github.com/${await gh.getRepoOwner()}/${await gh.getRepoName()}/releases/tag/v${PACKAGE_JSON.version})
 - **Version**:
 \`\`\`sh
 ${PACKAGE_JSON.version}
@@ -103,7 +103,7 @@ ${PACKAGE_JSON.version}
         await gh.updateCommentOnPR(commentID, (`
 Beta release created successfully!
       
-- **Package**: [\`${PACKAGE_JSON.name}\`](https://github.com/omariosouto/${await gh.getRepoName()}/releases/tag/v${PACKAGE_JSON.version})
+- **Package**: [\`${PACKAGE_JSON.name}\`](https://github.com/${await gh.getRepoOwner()}/${await gh.getRepoName()}/releases/tag/v${PACKAGE_JSON.version})
 - **Version**:
 \`\`\`sh
 ${PACKAGE_JSON.version}
@@ -237,10 +237,10 @@ ${PACKAGE_JSON.version}
 
       switch (BUMP_KIND) {
         case "major":
-          newVersion = `${parseInt(major) + 1}.${minor}.${patch}`;
+          newVersion = `${parseInt(major) + 1}.0.0`;
           break;
         case "minor":
-          newVersion = `${major}.${parseInt(minor) + 1}.${patch}`;
+          newVersion = `${major}.${parseInt(minor) + 1}.0`;
           break;
         case "patch":
           newVersion = `${major}.${minor}.${parseInt(patch) + 1}`;
@@ -307,6 +307,9 @@ ${PACKAGE_JSON.version}
     console.log("[prInfo]", prInfo);
 
     return {
+      async getRepoOwner() {
+        return owner;
+      },
       async getRepoName() {
         return repo;
       },
