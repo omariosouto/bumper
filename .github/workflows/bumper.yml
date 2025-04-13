@@ -19,8 +19,8 @@ jobs:
         id: create-app-token
         uses: actions/create-github-app-token@v1
         with:
-          app_id: ${{ secrets.GH_APP_ID }}
-          private_key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+          app-id: ${{ secrets.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
           permission-packages: write
           # Optionally specify which repository permissions you need.
           # See https://github.com/actions/create-github-app-token#inputs
