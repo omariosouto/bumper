@@ -1,0 +1,8 @@
+{
+  "debug": false,
+  "packagePath": "./",
+  "buildCommand": "npm run build",
+  "mock": {
+    "PR_NUMBER": 1
+  }
+}

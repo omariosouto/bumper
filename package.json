@@ -1,0 +1,21 @@
+{
+  "name": "@omariosouto/bumper",
+  "version": "1.0.0",
+  "description": "Qualistack bumper",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo 'I need to build the library...'",
+    "test": "echo 'There are no tests... but things work trust me!'"
+  },
+  "repository": "https://github.com/omariosouto/bumper",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/omariosouto/bumper/issues"
+  },
+  "homepage": "https://github.com/omariosouto/bumper#readme"
+}
