@@ -233,7 +233,7 @@ ${PACKAGE_JSON.version}
     function createGitTag() {
       log("🤖 - Create git TAG");
       const parsedMessage = parseMessage(MESSAGE);
-      const gitCommand = `git tag -a v${PACKAGE_JSON.version} -m "${parsedMessage}"`;
+      const gitCommand = `git tag -a v${PACKAGE_JSON.version} -m "Creating tag for the release: ${PACKAGE_JSON.version}"`;
 
       DEBUG &&
         log(gitCommand);
