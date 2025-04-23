@@ -1,6 +1,6 @@
 {
   "name": "@omariosouto/bumper",
-  "version": "1.6.1",
+  "version": "1.6.2-beta20254231745408782PR10",
   "bin": {
     "omariosouto-bumper": "./bin/cli.js"
   },
