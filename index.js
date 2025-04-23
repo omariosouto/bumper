@@ -355,6 +355,10 @@ ${PACKAGE_JSON.version}
     const BASE_URL = `https://api.github.com/repos/${owner}/${repo}/issues/${PR_NUMBER}`;
     const prInfo = await fetch(BASE_URL, {
       method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.GH_TOKEN}`,
+      },
     })
       .then(res => res.json());
 
